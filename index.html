@@ -12,54 +12,55 @@
   <meta property="og:type" content="website" />
   <meta property="og:image" content="https://i.ibb.co/5WcCLz0M/LOGO-white-transparent-bg.webp" />
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Font & Icons -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a2b4d6d6b4.js" crossorigin="anonymous"></script>
 
   <style>
     :root{
-      /* Sparify-like: clean white + turquoise accent */
-      --bgA:#F3FFFE;
-      --bgB:#FFFFFF;
-
-      --card:#FFFFFF;
-      --border: rgba(7, 32, 34, .10);
-
+      --accent:#00B1B7;
+      --accent2:#2FD6D9;
       --text:#062022;
       --muted: rgba(6, 32, 34, .62);
-
-      --accent:#00B1B7;    /* Sparify turquoise */
-      --accent2:#2FD6D9;   /* lighter turquoise */
-
-      --shadow: 0 18px 45px rgba(0,0,0,.10);
-      --radius: 18px;
+      --card: rgba(255,255,255,.85);
+      --shadow: 0 18px 45px rgba(0,0,0,.12);
+      --radius: 22px;
     }
 
-    *{ box-sizing:border-box; }
-    html,body{ height:100%; }
-
+    *{box-sizing:border-box;}
     body{
       margin:0;
-      font-family: "Montserrat", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      font-family:"Montserrat",sans-serif;
       color:var(--text);
-      background:
-        radial-gradient(900px 600px at 20% 12%, rgba(0,177,183,.18), transparent 55%),
-        radial-gradient(900px 600px at 85% 22%, rgba(47,214,217,.14), transparent 55%),
-        linear-gradient(180deg, var(--bgA), var(--bgB));
+      min-height:100vh;
       display:flex;
       align-items:center;
       justify-content:center;
-      padding:28px 14px;
+      padding:24px;
+      background: var(--accent);
+      position:relative;
+      overflow:hidden;
+    }
+
+    /* Hintergrund mit animiertem GIF */
+    body::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:url('https://i.ibb.co/Z1wzPgV/teal-waves.gif') center/cover no-repeat;
+      opacity:0.25;
+      z-index:-1;
     }
 
     .wrap{ width:min(560px, 100%); }
 
     .card{
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 28px;
-      box-shadow: var(--shadow);
-      padding: 26px 18px 18px;
+      backdrop-filter: blur(18px);
+      background:var(--card);
+      border-radius:28px;
+      box-shadow:var(--shadow);
+      padding:28px 22px;
+      border:1px solid rgba(255,255,255,.3);
     }
 
     .top{
@@ -67,138 +68,75 @@
       flex-direction:column;
       align-items:center;
       gap:10px;
-      padding: 6px 8px 14px;
       text-align:center;
+      margin-bottom:20px;
     }
 
-    /* White logo needs turquoise holder */
     .logo{
-      width:92px;
-      height:92px;
-      border-radius: 999px;
-      display:grid;
-      place-items:center;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      box-shadow: 0 16px 30px rgba(0,177,183,.22);
-      border: 1px solid rgba(0,0,0,.06);
-      overflow:hidden;
+      width:90px;height:90px;
+      border-radius:999px;
+      background:linear-gradient(135deg,var(--accent),var(--accent2));
+      display:grid;place-items:center;
+      box-shadow:0 14px 26px rgba(0,177,183,.25);
     }
 
-    .logo img{
-      width:78px;
-      height:auto;
-      display:block;
-      filter: drop-shadow(0 10px 18px rgba(0,0,0,.10));
-    }
+    .logo img{width:70px;height:auto;}
 
-    h1{
-      margin:0;
-      font-size: 26px;
-      letter-spacing: .02em;
-    }
-
-    .sub{
-      margin:0;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.35;
-    }
+    h1{margin:0;font-size:28px;}
+    .sub{margin:0;color:var(--muted);font-size:13px;}
 
     .links{
       display:flex;
       flex-direction:column;
-      gap:12px;
-      padding: 10px 4px 6px;
+      gap:14px;
     }
 
     .btn{
       display:flex;
       align-items:center;
       justify-content:space-between;
-      gap:12px;
-      padding: 14px 16px;
-      border-radius: var(--radius);
       text-decoration:none;
-      color: var(--text);
-      background: #fff;
-      border: 1px solid rgba(0,177,183,.22);
-      box-shadow: 0 10px 22px rgba(0,0,0,.06);
-      transition: transform .14s ease, box-shadow .14s ease, border-color .14s ease;
+      color:var(--text);
+      background:white;
+      border-radius:var(--radius);
+      padding:14px 18px;
+      box-shadow:0 10px 22px rgba(0,0,0,.06);
+      border:1px solid rgba(0,177,183,.2);
+      transition:all .15s ease;
     }
-
     .btn:hover{
-      transform: translateY(-1px);
-      border-color: rgba(0,177,183,.45);
-      box-shadow: 0 14px 30px rgba(0,0,0,.08);
+      transform:translateY(-2px);
+      box-shadow:0 16px 30px rgba(0,0,0,.1);
+      border-color:var(--accent);
     }
 
     .left{
       display:flex;
       align-items:center;
       gap:12px;
-      min-width:0;
     }
 
     .icon{
-      width:38px;height:38px;border-radius: 14px;
-      background: linear-gradient(135deg, rgba(0,177,183,.18), rgba(47,214,217,.10));
-      border: 1px solid rgba(0,177,183,.20);
-      display:grid;place-items:center;
-      flex: 0 0 auto;
-      position:relative;
-      overflow:hidden;
+      font-size:20px;
+      color:var(--accent);
+      background:rgba(0,177,183,.12);
+      padding:10px;
+      border-radius:12px;
     }
 
-    .icon::after{
-      content:"";
-      position:absolute; inset:-40%;
-      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.9), transparent 45%);
-      transform: rotate(12deg);
-      opacity:.75;
-    }
+    .label b{font-size:14px;font-weight:800;}
+    .label small{font-size:12px;color:var(--muted);}
 
-    .label{
-      display:flex;
-      flex-direction:column;
-      gap:2px;
-      min-width:0;
-    }
-
-    .label b{
-      font-size: 14px;
-      font-weight: 800;
-      white-space:nowrap;
-      overflow:hidden;
-      text-overflow:ellipsis;
-    }
-
-    .label small{
-      font-size: 12px;
-      color: var(--muted);
-      white-space:nowrap;
-      overflow:hidden;
-      text-overflow:ellipsis;
-    }
-
-    .arrow{
-      color: rgba(0,177,183,.95);
-      font-size: 18px;
-      flex: 0 0 auto;
-    }
+    .arrow{color:var(--accent);font-size:16px;}
 
     footer{
-      margin-top: 14px;
+      margin-top:20px;
       text-align:center;
-      color: rgba(6,32,34,.52);
-      font-size: 12px;
+      color:rgba(6,32,34,.52);
+      font-size:12px;
     }
-    footer a{ color: rgba(0,120,125,.95); text-decoration:none; }
-    footer a:hover{ text-decoration:underline; }
-
-    @media (prefers-reduced-motion: reduce){
-      .btn{ transition:none; }
-      .btn:hover{ transform:none; }
-    }
+    footer a{color:var(--accent);text-decoration:none;}
+    footer a:hover{text-decoration:underline;}
   </style>
 </head>
 
@@ -206,63 +144,50 @@
   <main class="wrap">
     <section class="card">
       <div class="top">
-        <div class="logo" aria-label="Sparify Logo">
+        <div class="logo">
           <img src="https://i.ibb.co/5WcCLz0M/LOGO-white-transparent-bg.webp" alt="Sparify Logo">
         </div>
-
         <h1>Sparify</h1>
         <p class="sub">Sparen, das man anfassen kann.</p>
       </div>
 
-      <nav class="links" aria-label="Links">
-        <a class="btn" href="https://www.instagram.com/sparifyofficial" target="_blank" rel="noopener">
+      <nav class="links">
+        <a class="btn" href="https://www.instagram.com/sparifyofficial" target="_blank">
           <div class="left">
-            <div class="icon" aria-hidden="true">📷</div>
-            <div class="label">
-              <b>Instagram</b>
-              <small>@sparifyofficial</small>
-            </div>
+            <div class="icon"><i class="fab fa-instagram"></i></div>
+            <div class="label"><b>Instagram</b><small>@sparifyofficial</small></div>
           </div>
-          <div class="arrow" aria-hidden="true">›</div>
+          <div class="arrow">›</div>
         </a>
 
-        <a class="btn" href="https://sparify.org" target="_blank" rel="noopener">
+        <a class="btn" href="https://sparify.org" target="_blank">
           <div class="left">
-            <div class="icon" aria-hidden="true">🌐</div>
-            <div class="label">
-              <b>Website</b>
-              <small>sparify.org</small>
-            </div>
+            <div class="icon"><i class="fas fa-globe"></i></div>
+            <div class="label"><b>Website</b><small>sparify.org</small></div>
           </div>
-          <div class="arrow" aria-hidden="true">›</div>
+          <div class="arrow">›</div>
         </a>
 
-        <a class="btn" href="https://app.sparify.org" target="_blank" rel="noopener">
+        <a class="btn" href="https://app.sparify.org" target="_blank">
           <div class="left">
-            <div class="icon" aria-hidden="true">📱</div>
-            <div class="label">
-              <b>App öffnen</b>
-              <small>app.sparify.org</small>
-            </div>
+            <div class="icon"><i class="fas fa-mobile-alt"></i></div>
+            <div class="label"><b>App öffnen</b><small>app.sparify.org</small></div>
           </div>
-          <div class="arrow" aria-hidden="true">›</div>
+          <div class="arrow">›</div>
         </a>
 
-        <a class="btn" href="https://drive.google.com/drive/folders/1tkuPhwyDsf_P6kEX4wXICH-D5W4yh2bs?usp=sharing" target="_blank" rel="noopener">
+        <a class="btn" href="https://drive.google.com/drive/folders/1tkuPhwyDsf_P6kEX4wXICH-D5W4yh2bs?usp=sharing" target="_blank">
           <div class="left">
-            <div class="icon" aria-hidden="true">🎬</div>
-            <div class="label">
-              <b>Sparify Video</b>
-              <small>Google Drive</small>
-            </div>
+            <div class="icon"><i class="fas fa-play-circle"></i></div>
+            <div class="label"><b>Sparify Video</b><small>Google Drive</small></div>
           </div>
-          <div class="arrow" aria-hidden="true">›</div>
+          <div class="arrow">›</div>
         </a>
       </nav>
     </section>
 
     <footer>
-      © <span id="y"></span> Sparify · <a href="https://sparify.org" target="_blank" rel="noopener">sparify.org</a>
+      © <span id="y"></span> Sparify · <a href="https://sparify.org" target="_blank">sparify.org</a>
     </footer>
   </main>
 
