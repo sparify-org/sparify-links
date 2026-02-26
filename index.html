@@ -6,11 +6,10 @@
   <title>Sparify — Links</title>
   <meta name="description" content="Sparify — alle wichtigen Links an einem Ort." />
 
-  <!-- Font -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
 
   <style>
-    :root{
+    :root {
       --accent:#00B1B7;
       --accent2:#2FD6D9;
       --text:#062022;
@@ -78,17 +77,8 @@
 
     .logo img{width:70px;height:auto;}
 
-    h1{
-      margin:0;
-      font-size:28px;
-      letter-spacing:0.02em;
-    }
-
-    .sub{
-      margin:4px 0 0;
-      color:var(--muted);
-      font-size:13px;
-    }
+    h1{margin:0;font-size:28px;letter-spacing:0.02em;}
+    .sub{margin:4px 0 0;color:var(--muted);font-size:13px;}
 
     .links{
       display:flex;
@@ -111,26 +101,25 @@
       transition:all .15s ease;
     }
 
-    .btn:hover{
+    .btn:hover, .btn:active{
       transform:translateY(-2px);
       box-shadow:0 16px 30px rgba(0,0,0,.1);
       border-color:var(--accent);
     }
 
-    .left{
-      display:flex;
-      align-items:center;
-      gap:12px;
-    }
+    .left{display:flex;align-items:center;gap:12px;}
 
     .icon{
       width:44px;height:44px;
       border-radius:14px;
-      background:var(--accent);
       display:grid;place-items:center;
       overflow:hidden;
       border:1px solid rgba(255,255,255,.25);
     }
+
+    /* Default turquoise background for icons */
+    .icon.turquoise{ background:var(--accent); }
+    .icon.white{ background:white; }
 
     .icon img{
       width:65%;
@@ -138,28 +127,10 @@
       filter: brightness(100%) contrast(110%);
     }
 
-    .label{
-      display:flex;
-      flex-direction:column;
-      gap:3px;
-    }
-
-    .label b{
-      font-size:15px;
-      font-weight:700;
-      letter-spacing:0.03em;
-      margin-bottom:1px;
-    }
-
-    .label small{
-      font-size:12px;
-      color:var(--muted);
-    }
-
-    .arrow{
-      color:var(--accent);
-      font-size:18px;
-    }
+    .label{display:flex;flex-direction:column;gap:3px;}
+    .label b{font-size:15px;font-weight:700;letter-spacing:0.03em;}
+    .label small{font-size:12px;color:var(--muted);}
+    .arrow{color:var(--accent);font-size:18px;}
 
     footer{
       margin-top:22px;
@@ -168,12 +139,19 @@
       font-size:13px;
       letter-spacing:0.01em;
     }
-    footer a{
-      color:#fff;
-      text-decoration:none;
-      font-weight:600;
-    }
+    footer a{color:#fff;text-decoration:none;font-weight:600;}
     footer a:hover{text-decoration:underline;}
+
+    /* Responsive */
+    @media (max-width:600px){
+      .card{padding:24px 18px 30px;}
+      .logo{width:70px;height:70px;}
+      .logo img{width:55px;}
+      h1{font-size:22px;}
+      .btn{padding:12px 14px;}
+      .icon{width:38px;height:38px;}
+      .label b{font-size:14px;}
+    }
   </style>
 </head>
 
@@ -192,7 +170,7 @@
         <!-- Instagram -->
         <a class="btn" href="https://www.instagram.com/sparifyofficial" target="_blank">
           <div class="left">
-            <div class="icon">
+            <div class="icon white">
               <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="Instagram Logo">
             </div>
             <div class="label">
@@ -206,7 +184,7 @@
         <!-- Website -->
         <a class="btn" href="https://sparify.org" target="_blank">
           <div class="left">
-            <div class="icon">
+            <div class="icon turquoise">
               <img src="https://i.ibb.co/5WcCLz0M/LOGO-white-transparent-bg.webp" alt="Sparify Logo">
             </div>
             <div class="label">
@@ -220,7 +198,7 @@
         <!-- App -->
         <a class="btn" href="https://app.sparify.org" target="_blank">
           <div class="left">
-            <div class="icon">
+            <div class="icon turquoise">
               <img src="https://i.ibb.co/5WcCLz0M/LOGO-white-transparent-bg.webp" alt="Sparify Logo">
             </div>
             <div class="label">
@@ -234,7 +212,7 @@
         <!-- Video -->
         <a class="btn" href="https://drive.google.com/drive/folders/1tkuPhwyDsf_P6kEX4wXICH-D5W4yh2bs?usp=sharing" target="_blank">
           <div class="left">
-            <div class="icon">
+            <div class="icon white">
               <img src="https://cdn-icons-png.flaticon.com/512/2991/2991148.png" alt="Google Drive Logo">
             </div>
             <div class="label">
@@ -253,17 +231,27 @@
   </main>
 
   <script>
-    // Aktuelles Jahr
+    // Jahr aktualisieren
     document.getElementById("y").textContent = new Date().getFullYear();
 
-    // Dynamischer Maus-Fade-Effekt
+    // Fade-Effekt bei Maus und Touch
     const body = document.body;
-    body.addEventListener('mousemove', e => {
-      const x = e.clientX / window.innerWidth * 100;
-      const y = e.clientY / window.innerHeight * 100;
+    function setFade(x, y) {
+      const xPerc = x / window.innerWidth * 100;
+      const yPerc = y / window.innerHeight * 100;
       body.style.background = `
-        radial-gradient(circle at ${x}% ${y}%, rgba(255,255,255,0.25) 0%, transparent 60%), 
+        radial-gradient(circle at ${xPerc}% ${yPerc}%, rgba(255,255,255,0.25) 0%, transparent 60%), 
         #00B1B7`;
+    }
+
+    body.addEventListener('mousemove', e => setFade(e.clientX, e.clientY));
+    body.addEventListener('touchmove', e => {
+      const touch = e.touches[0];
+      setFade(touch.clientX, touch.clientY);
+    });
+    body.addEventListener('touchstart', e => {
+      const touch = e.touches[0];
+      setFade(touch.clientX, touch.clientY);
     });
   </script>
 </body>
