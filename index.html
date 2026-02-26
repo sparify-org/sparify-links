@@ -14,7 +14,6 @@
 
   <!-- Font & Icons -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <script src="https://kit.fontawesome.com/a2b4d6d6b4.js" crossorigin="anonymous"></script>
 
   <style>
     :root{
@@ -22,7 +21,7 @@
       --accent2:#2FD6D9;
       --text:#062022;
       --muted: rgba(6, 32, 34, .62);
-      --card: rgba(255,255,255,.85);
+      --card: rgba(255,255,255,0.9);
       --shadow: 0 18px 45px rgba(0,0,0,.12);
       --radius: 22px;
     }
@@ -37,19 +36,7 @@
       align-items:center;
       justify-content:center;
       padding:24px;
-      background: var(--accent);
-      position:relative;
-      overflow:hidden;
-    }
-
-    /* Hintergrund mit animiertem GIF */
-    body::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:url('https://i.ibb.co/Z1wzPgV/teal-waves.gif') center/cover no-repeat;
-      opacity:0.25;
-      z-index:-1;
+      background: linear-gradient(180deg, #F5FFFF 0%, #E9FEFE 35%, #00B1B7 220%);
     }
 
     .wrap{ width:min(560px, 100%); }
@@ -59,8 +46,22 @@
       background:var(--card);
       border-radius:28px;
       box-shadow:var(--shadow);
-      padding:28px 22px;
-      border:1px solid rgba(255,255,255,.3);
+      padding:32px 24px 40px;
+      border:1px solid rgba(255,255,255,.4);
+      position:relative;
+      overflow:hidden;
+    }
+
+    /* sanfter Fade-Effekt am unteren Rand */
+    .card::after{
+      content:"";
+      position:absolute;
+      bottom:-40px; left:0; right:0;
+      height:120px;
+      background:linear-gradient(180deg, transparent, rgba(0,177,183,.25), rgba(0,177,183,.45));
+      z-index:-1;
+      border-bottom-left-radius:28px;
+      border-bottom-right-radius:28px;
     }
 
     .top{
@@ -69,7 +70,7 @@
       align-items:center;
       gap:10px;
       text-align:center;
-      margin-bottom:20px;
+      margin-bottom:28px;
     }
 
     .logo{
@@ -82,13 +83,23 @@
 
     .logo img{width:70px;height:auto;}
 
-    h1{margin:0;font-size:28px;}
-    .sub{margin:0;color:var(--muted);font-size:13px;}
+    h1{
+      margin:0;
+      font-size:28px;
+      letter-spacing:0.02em;
+    }
+
+    .sub{
+      margin:4px 0 0;
+      color:var(--muted);
+      font-size:13px;
+    }
 
     .links{
       display:flex;
       flex-direction:column;
       gap:14px;
+      margin-top:6px;
     }
 
     .btn{
@@ -99,11 +110,12 @@
       color:var(--text);
       background:white;
       border-radius:var(--radius);
-      padding:14px 18px;
+      padding:15px 18px;
       box-shadow:0 10px 22px rgba(0,0,0,.06);
       border:1px solid rgba(0,177,183,.2);
       transition:all .15s ease;
     }
+
     .btn:hover{
       transform:translateY(-2px);
       box-shadow:0 16px 30px rgba(0,0,0,.1);
@@ -117,25 +129,54 @@
     }
 
     .icon{
-      font-size:20px;
-      color:var(--accent);
+      width:42px;height:42px;
+      border-radius:14px;
       background:rgba(0,177,183,.12);
-      padding:10px;
-      border-radius:12px;
+      display:grid;place-items:center;
+      overflow:hidden;
+      border:1px solid rgba(0,177,183,.2);
     }
 
-    .label b{font-size:14px;font-weight:800;}
-    .label small{font-size:12px;color:var(--muted);}
+    .icon img{
+      width:60%;
+      height:auto;
+    }
 
-    .arrow{color:var(--accent);font-size:16px;}
+    .label{
+      display:flex;
+      flex-direction:column;
+      gap:3px;
+    }
+
+    .label b{
+      font-size:15px;
+      font-weight:700;
+      letter-spacing:0.02em;
+      margin-bottom:1px;
+    }
+
+    .label small{
+      font-size:12px;
+      color:var(--muted);
+    }
+
+    .arrow{
+      color:var(--accent);
+      font-size:18px;
+    }
 
     footer{
-      margin-top:20px;
+      margin-top:22px;
       text-align:center;
-      color:rgba(6,32,34,.52);
-      font-size:12px;
+      color:rgba(6,32,34,.55);
+      font-size:13px;
+      letter-spacing:0.01em;
     }
-    footer a{color:var(--accent);text-decoration:none;}
+    footer a{
+      color:var(--accent);
+      text-decoration:none;
+      font-weight:600;
+    }
     footer a:hover{text-decoration:underline;}
   </style>
 </head>
@@ -152,34 +193,58 @@
       </div>
 
       <nav class="links">
+        <!-- Instagram -->
         <a class="btn" href="https://www.instagram.com/sparifyofficial" target="_blank">
           <div class="left">
-            <div class="icon"><i class="fab fa-instagram"></i></div>
-            <div class="label"><b>Instagram</b><small>@sparifyofficial</small></div>
+            <div class="icon">
+              <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="Instagram Logo">
+            </div>
+            <div class="label">
+              <b>Instagram</b>
+              <small>@sparifyofficial</small>
+            </div>
           </div>
           <div class="arrow">›</div>
         </a>
 
+        <!-- Website -->
         <a class="btn" href="https://sparify.org" target="_blank">
           <div class="left">
-            <div class="icon"><i class="fas fa-globe"></i></div>
-            <div class="label"><b>Website</b><small>sparify.org</small></div>
+            <div class="icon">
+              <img src="https://i.ibb.co/5WcCLz0M/LOGO-white-transparent-bg.webp" alt="Sparify Logo">
+            </div>
+            <div class="label">
+              <b>Website</b>
+              <small>sparify.org</small>
+            </div>
           </div>
           <div class="arrow">›</div>
         </a>
 
+        <!-- App -->
         <a class="btn" href="https://app.sparify.org" target="_blank">
           <div class="left">
-            <div class="icon"><i class="fas fa-mobile-alt"></i></div>
-            <div class="label"><b>App öffnen</b><small>app.sparify.org</small></div>
+            <div class="icon">
+              <img src="https://i.ibb.co/5WcCLz0M/LOGO-white-transparent-bg.webp" alt="Sparify Logo">
+            </div>
+            <div class="label">
+              <b>App öffnen</b>
+              <small>app.sparify.org</small>
+            </div>
           </div>
           <div class="arrow">›</div>
         </a>
 
+        <!-- Video -->
         <a class="btn" href="https://drive.google.com/drive/folders/1tkuPhwyDsf_P6kEX4wXICH-D5W4yh2bs?usp=sharing" target="_blank">
           <div class="left">
-            <div class="icon"><i class="fas fa-play-circle"></i></div>
-            <div class="label"><b>Sparify Video</b><small>Google Drive</small></div>
+            <div class="icon">
+              <img src="https://cdn-icons-png.flaticon.com/512/2991/2991148.png" alt="Google Drive Logo">
+            </div>
+            <div class="label">
+              <b>Sparify Video</b>
+              <small>Google Drive</small>
+            </div>
           </div>
           <div class="arrow">›</div>
         </a>
