@@ -6,13 +6,7 @@
   <title>Sparify — Links</title>
   <meta name="description" content="Sparify — alle wichtigen Links an einem Ort." />
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="Sparify" />
-  <meta property="og:description" content="Alle wichtigen Links an einem Ort." />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://i.ibb.co/5WcCLz0M/LOGO-white-transparent-bg.webp" />
-
-  <!-- Font & Icons -->
+  <!-- Font -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
 
   <style>
@@ -21,7 +15,7 @@
       --accent2:#2FD6D9;
       --text:#062022;
       --muted: rgba(6, 32, 34, .62);
-      --card: rgba(255,255,255,0.9);
+      --card: rgba(255,255,255,0.92);
       --shadow: 0 18px 45px rgba(0,0,0,.12);
       --radius: 22px;
     }
@@ -36,7 +30,9 @@
       align-items:center;
       justify-content:center;
       padding:24px;
-      background: linear-gradient(180deg, #F5FFFF 0%, #E9FEFE 35%, #00B1B7 220%);
+      background: radial-gradient(circle at center, rgba(255,255,255,.15) 0%, transparent 60%), var(--accent);
+      transition: background 0.3s ease;
+      overflow:hidden;
     }
 
     .wrap{ width:min(560px, 100%); }
@@ -52,7 +48,6 @@
       overflow:hidden;
     }
 
-    /* sanfter Fade-Effekt am unteren Rand */
     .card::after{
       content:"";
       position:absolute;
@@ -129,17 +124,18 @@
     }
 
     .icon{
-      width:42px;height:42px;
+      width:44px;height:44px;
       border-radius:14px;
-      background:rgba(0,177,183,.12);
+      background:var(--accent);
       display:grid;place-items:center;
       overflow:hidden;
-      border:1px solid rgba(0,177,183,.2);
+      border:1px solid rgba(255,255,255,.25);
     }
 
     .icon img{
-      width:60%;
+      width:65%;
       height:auto;
+      filter: brightness(100%) contrast(110%);
     }
 
     .label{
@@ -151,7 +147,7 @@
     .label b{
       font-size:15px;
       font-weight:700;
-      letter-spacing:0.02em;
+      letter-spacing:0.03em;
       margin-bottom:1px;
     }
 
@@ -168,12 +164,12 @@
     footer{
       margin-top:22px;
       text-align:center;
-      color:rgba(6,32,34,.55);
+      color:rgba(255,255,255,.8);
       font-size:13px;
       letter-spacing:0.01em;
     }
     footer a{
-      color:var(--accent);
+      color:#fff;
       text-decoration:none;
       font-weight:600;
     }
@@ -257,7 +253,18 @@
   </main>
 
   <script>
+    // Aktuelles Jahr
     document.getElementById("y").textContent = new Date().getFullYear();
+
+    // Dynamischer Maus-Fade-Effekt
+    const body = document.body;
+    body.addEventListener('mousemove', e => {
+      const x = e.clientX / window.innerWidth * 100;
+      const y = e.clientY / window.innerHeight * 100;
+      body.style.background = `
+        radial-gradient(circle at ${x}% ${y}%, rgba(255,255,255,0.25) 0%, transparent 60%), 
+        #00B1B7`;
+    });
   </script>
 </body>
 </html>
