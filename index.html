@@ -4,6 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Sparify — Links</title>
+  <link rel="apple-touch-icon" href="https://i.ibb.co/5WcCLz0M/LOGO-white-transparent-bg.webp">
   <meta name="description" content="Sparify — alle wichtigen Links an einem Ort." />
 
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -230,29 +231,50 @@
     </footer>
   </main>
 
-  <script>
-    // Jahr aktualisieren
-    document.getElementById("y").textContent = new Date().getFullYear();
+<script>
+document.getElementById("y").textContent = new Date().getFullYear();
 
-    // Fade-Effekt bei Maus und Touch
-    const body = document.body;
-    function setFade(x, y) {
-      const xPerc = x / window.innerWidth * 100;
-      const yPerc = y / window.innerHeight * 100;
-      body.style.background = `
-        radial-gradient(circle at ${xPerc}% ${yPerc}%, rgba(255,255,255,0.25) 0%, transparent 60%), 
-        #00B1B7`;
-    }
+const body = document.body;
 
-    body.addEventListener('mousemove', e => setFade(e.clientX, e.clientY));
-    body.addEventListener('touchmove', e => {
-      const touch = e.touches[0];
-      setFade(touch.clientX, touch.clientY);
-    });
-    body.addEventListener('touchstart', e => {
-      const touch = e.touches[0];
-      setFade(touch.clientX, touch.clientY);
-    });
-  </script>
+let targetX = window.innerWidth / 2;
+let targetY = window.innerHeight / 2;
+
+let currentX = targetX;
+let currentY = targetY;
+
+function animate() {
+
+  currentX += (targetX - currentX) * 0.08;
+  currentY += (targetY - currentY) * 0.08;
+
+  const xPerc = currentX / window.innerWidth * 100;
+  const yPerc = currentY / window.innerHeight * 100;
+
+  body.style.background = `
+    radial-gradient(circle at ${xPerc}% ${yPerc}%,
+    rgba(255,255,255,0.25) 0%,
+    transparent 60%),
+    #00B1B7`;
+
+  requestAnimationFrame(animate);
+}
+
+animate();
+
+document.addEventListener("mousemove", e => {
+  targetX = e.clientX;
+  targetY = e.clientY;
+});
+
+document.addEventListener("touchmove", e => {
+  targetX = e.touches[0].clientX;
+  targetY = e.touches[0].clientY;
+}, { passive: true });
+
+document.addEventListener("touchstart", e => {
+  targetX = e.touches[0].clientX;
+  targetY = e.touches[0].clientY;
+}, { passive: true });
+</script>
 </body>
 </html>
